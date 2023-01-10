@@ -15,7 +15,7 @@ class Veriflanjut extends BaseController
     {
         $id_verifikasi= random_string('alnum', 16);
         $id_member= session()->get('id_member');
-        $nama_lengkap= $this->request->getPost('namalengkap');
+        $nama_lengkap= $this->request->getPost('nama_lengkap');
         $alamat_ktp= $this->request->getPost('alamat_ktp');
         $tanggal_lahir=parse_timestamp(strtotime($this->request->getPost('tanggal_lahir')), 'Y-m-d');
         $profesi= $this->request->getPost('profesi');
@@ -44,7 +44,7 @@ class Veriflanjut extends BaseController
         $fotokandang->move('verifikasi', $nmfoto_kandang);
         
         $model=new ModelVerifMember();
-        $data=[
+        $datas=[
                 'id_verifikasi'=>$id_verifikasi,
                 'id_member'=>$id_member,
                 'nama_lengkap'=>$nama_lengkap,
@@ -64,7 +64,9 @@ class Veriflanjut extends BaseController
                 'foto_kandang'=>$nmfoto_kandang,
                 'created_at'=>$tanggal,
             ];
-        $model->insert($data);
+        $anu=false;
+        $temp=db_connect();
+        $temp->table('verifikasi')->insert($datas);
         return redirect()->to('dashboard/kelolahewan');
 
     }
