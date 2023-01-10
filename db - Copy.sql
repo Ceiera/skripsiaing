@@ -107,7 +107,7 @@ CREATE TABLE rating(
 );
 
 CREATE TABLE verifikasi(
-    id_verifikasi BIGSERIAL primary key,
+    id_verifikasi varchar(255) primary key,
     id_admin varchar(255),
     id_member varchar(255),
     nama_lengkap varchar(255),
