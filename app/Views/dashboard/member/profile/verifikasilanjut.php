@@ -117,10 +117,10 @@
                 </div>
                 <div class="input-group">
                     <div class="form-group">
-                        <label for="fotokandang">Foto Kandang (Jika ada)</label>
+                        <label for="fotokandang">Foto Kandang/Tempat Hewan</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" name="fotokandang" class="custom-file-input" id="fotokandang" onchange="readURL(this);" accept="image/png, image/jpg, image/jpeg">
+                                <input type="file" name="fotokandang" class="custom-file-input" id="fotokandang"  accept="image/png, image/jpg, image/jpeg">
                                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                             <div class="input-group-append">

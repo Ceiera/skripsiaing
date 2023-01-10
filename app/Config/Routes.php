@@ -54,6 +54,10 @@ $routes->post('/login/coba/cekXendit', 'Coba::cekXendit');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/dashboard/kelolamember', 'Kelolamember::index');
 $routes->post('/dashboard/kelolamember/hapus', 'Kelolamember::hapus');
+$routes->get('/admin/veriflanjut', 'Veriflanjut::list');
+$routes->get('/admin/veriflanjut/(:segment)', 'Veriflanjut::detail/$1');
+$routes->post('/admin/veriflanjut/terima', 'Veriflanjut::terima');
+$routes->post('/admin/veriflanjut/tolak', 'Veriflanjut::tolak');
 
 //dashbboardMember
 $routes->get('/dashboard/kelolahewan', 'Kelolahewan::index');
