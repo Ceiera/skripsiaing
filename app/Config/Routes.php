@@ -78,7 +78,13 @@ $routes->post('/pasar/ajukanadopsi', 'Pasar::ajukanadopsi');
 $routes->get('/dashboard/kelolaadopsi', 'Kelolaadopsi::index');
 $routes->get('/dashboard/kelolaadopsi/detail', 'Kelolaadopsi::detail');
 $routes->get('/dashboard/kelolaadopsi/orang', 'Kelolaadopsi::orang');
-$routes->get('/dashboard/kelolaadopsi/orang/(:segment)', 'Kelolaadopsi::detailorang/$1');
+$routes->post('/dashboard/kelolaadopsi/orang/(:segment)', 'Kelolaadopsi::detailorang/$1');
+
+
+//testing
+$routes->get('/testingpage', 'Transaksi::buatPembayaran');
+
+
 
 /*
  * --------------------------------------------------------------------

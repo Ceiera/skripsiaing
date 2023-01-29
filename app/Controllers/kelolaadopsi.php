@@ -2,6 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelAdopsi;
+use App\Models\ModelKelolamember;
+use App\Models\ModelVerifMember;
+
 class Kelolaadopsi extends BaseController
 {
     public function index()
@@ -40,21 +44,23 @@ class Kelolaadopsi extends BaseController
     
     public function detailorang($i)
     {
-        $db=db_connect();
-        $id_adopsi=$db->query("select * from adopsi where id_adopsi='".$i."'");
-        foreach ($id_adopsi->getResultArray() as $key) {
-            $id_calon=$key['id_member_calon'];
-            $id_hewan=$key['id_hewan'];
-            $tanggal_ajuan=$key['created_at'];
-            $edit_tanggal=$key['updated_at'];
-        }
-        $data_calon=$db->query("select member.id_member, email, no_hp, nama_lengkap, profesi, bersedia_vaksinasi_rutin, bersedia steril, pernah_adopsi from member join verifikasi on member.id_member=verifikasi.id_member where id_member='".$id_calon."'");
-        dd($data_calon);
-        // $temp=$db->query("select * from adopsi, hewan where status_adopsi in ('Menunggu Diterima','Menunggu Pembayaran') and adopsi.id_hewan=hewan.id_hewan and adopsi.id_member_pemilik='".$pencari."'")->getResultArray();
-        // $data=$temp;
-        // $datas=[
-        //     'data' =>$data 
-        // ];
-        // return view('dashboard/member/kelolaadopsi/orang', $datas);
+        //Ambil Model adopsi
+        $adopsi= new ModelAdopsi();
+        $cekId= $adopsi->find($i);
+        $id_member_adopsi=$cekId['id_member_calon'];
+
+        //cari info member
+        $member=new ModelKelolamember();
+        $dataMember= $member->find($id_member_adopsi);
+        //cari info detail member
+        $verfikasi=new ModelVerifMember();
+        $dataVerifikasi= $verfikasi->where('id_member',$id_member_adopsi)->where('status_verifikasi','Diterima')->first();
+        $data=array_merge($dataMember,$dataVerifikasi);
+
+        //kasih data ke page
+        $datas=[
+            'data' =>$data
+        ];
+        return view('dashboard/member/kelolaadopsi/detailcalon', $datas);
     }
 }

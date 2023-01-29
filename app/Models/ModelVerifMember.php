@@ -25,7 +25,7 @@ class ModelVerifMember extends Model
         $data=$temp
             ->join('member','verifikasi.id_member=member.id_member')
             ->where('status_verifikasi','Dalam Proses')
-            ->where('id_verifikasi',$id_verif)->findAll();
+            ->where('id_verifikasi',$id_verif)->first();
         return $data;
     }
 }

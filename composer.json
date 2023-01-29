@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.0",
-        "xendit/xendit-php": "^2.18"
+        "xendit/xendit-php": "^2.19"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

@@ -1,213 +1,242 @@
 <?= $this->extend('dashboard/statis/template');?>
 <?= $this->section('content');?>
-<section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
-                       alt="User profile picture">
+<section class="section about-section gray-bg" id="about">
+        <div class="container">
+            <div class="counter" style="padding: 22px 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);">
+                <div class="row align-items-center flex-row">
+                    <div class="col-8">
+                        <div class="about-text go-to">
+                            <h3 class="dark-color"><?= $data['nama_lengkap']?></h3>
+                            <h6 class="theme-color lead">Profesi: <?= $data['profesi']?></h6>
+                            <p><?= $data['alamat_ktp']?></p>
+                            <p>Alasan Adopsi: <?= $data['alasan_adopsi_lagi']?></p>
+                            
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="position-relative">
+                            <div class="" style="text-align: center;">
+                                <img class="rounded-circle" src="<?= base_url('/verifikasi').'/'.$data['foto_dirirumah']?>" title="" alt="" width="300px" height="300px">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-center"  style="text-align: center;">
+                            <div class="col">
+                                <button class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#terima">Terima</button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-danger btn-user btn-block"  data-toggle="modal" data-target="#tolak">Tolak</button>
+                            </div>                          
+                        </div>
+                    </div>
                 </div>
-
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-                <p class="text-muted text-center">Software Engineer</p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
-                  </li>
+            </div>
+            <br>
+            <div  style="padding: 22px 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);">
+                <ul class="nav nav-tabs" id="tabelAbout" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="datadiri-tab" data-bs-toggle="tab" data-bs-target="#datadiri-tab-pane" type="button" role="tab" aria-controls="datadiri-tab-pane" aria-selected="true">Data Diri</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="foto-tab" data-bs-toggle="tab" data-bs-target="#foto-tab-pane" type="button" role="tab" aria-controls="foto-tab-pane" aria-selected="false">Foto</button>
+                    </li>
                 </ul>
-
-                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- About Me Box -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">About Me</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-                <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
-                </p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
-
-                <hr>
-
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-9">
-            <div class="card">
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Response">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Posted 5 photos - 5 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3">
-                        <div class="col-sm-6">
-                          <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo">
-                              <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo">
+                <div class="tab-content" id="tabelAboutContent">
+                    <div class="tab-pane fade show active" id="datadiri-tab-pane" role="tabpanel" aria-labelledby="datadiri-tab" tabindex="0">
+                        <div class="grid gap-0 row-gap-3">
+                            <div class="p-2 row justify">
+                                <div class="col-2">No. HP</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto">
+                                    <?= $data['no_hp']?><a href="http://wa.me/<?= $data['no_hp']?>" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" style="color: green;"></i></a>
+                                </div>
                             </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo">
-                              <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                            <div class="p-2 row justify">
+                                <div class="col-2">Email</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['email']?></div>
                             </div>
-                            <!-- /.col -->
-                          </div>
-                          <!-- /.row -->
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                            <div class="p-2 row justify">
+                                <div class="col-2">Nomer Bank</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['bank_code']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Nama Akun Bank</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['nama_akunbank']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Umur</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto">
+                                    <?php $tz  = new DateTimeZone('Asia/Jakarta');
+                                    $age = DateTime::createFromFormat('Y-m-d', $data['tanggal_lahir'], $tz)->diff(new DateTime('now', $tz))->y;
+                                    echo $age;?>
+                                </div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Status Tempat Tinggal</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['status_tempat_tinggal']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Jumlah Penghuni Rumah</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['jum_penghuni_rumah']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Persetujuan Penghuni Rumah</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['persetujuan_penghuni_rumah']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Bersedia Vaksinasi</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['bersedia_vaksinasi_rutin']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Bersedia Steril</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['bersedia_steril']?></div>
+                            </div>
+                            <div class="p-2 row justify">
+                                <div class="col-2">Pernah Adopsi</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['pernah_adopsi']?></div>
+                            </div>
+                        </div>                        
                     </div>
-                    <!-- /.post -->
-                  </div>
-                  <!-- /.tab-pane -->
-                  <!-- /.tab-pane -->
-
-                  <!-- /.tab-pane -->
+                    <div div class="tab-pane fade" id="foto-tab-pane" role="tabpanel" aria-labelledby="foto-tab" tabindex="0">
+                        <div class="row" data-toggle="modal" data-target="#zoomFoto" style="margin-top: 20px;">
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_dirirumah']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="0">
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_rumah']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="1">
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_rumah2']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="2">
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_kandang']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="3">
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </div>
+            <div class="modal fade" id="zoomFoto" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExample" data-slide-to="1"></li>
+                                <li data-target="#carouselExample" data-slide-to="2"></li>
+                                <li data-target="#carouselExample" data-slide-to="3"></li>
+                            </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_dirirumah']?>" alt="foto diri">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_rumah']?>" alt="foto rumah">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_rumah2']?>" alt="foto rumah">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_kandang']?>" alt="foto kandang">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
                 </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
             </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="terima">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Terima Submit Verifikasi?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>No ID Verifikasi: <?= $data['id_verifikasi']?> dengan nama lengkap <?=  $data['nama_lengkap']?> akan diterima dan menjadi akun terverifikasi?</p>
+                        </div>
+                        <div class="modal-footer" >
+                            <div class="col">
+                            <button type="button" class="btn btn-secondary btn-user btn-block" data-dismiss="modal" >
+                                <span aria-hidden="true">Batal</span>
+                            </button>
+                            </div>
+                            <div class="col">
+                                <?= form_open('/admin/veriflanjut/terima')?>
+                                    <button class="btn btn-success btn-user btn-block" name="id_verifikasi" value="<?= $data['id_verifikasi']?>">Simpan</button>
+                                    <input type="text" disabled hidden name="id_member" value="<?= $data['id_member']?>">
+                                <?= form_close()?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" tabindex="-1" role="dialog" id="tolak">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Tolak Submit Verifikasi?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>No ID Verifikasi: <?= $data['id_verifikasi']?> dengan nama lengkap <?=  $data['nama_lengkap']?> akan ditolak?</p>
+                        </div>
+                        <div class="modal-footer" >
+                            <div class="col">
+                            <button type="button" class="btn btn-secondary btn-user btn-block" data-dismiss="modal" >
+                                <span aria-hidden="true">Batal</span>
+                            </button>
+                            </div>
+                            <div class="col">
+                                <?= form_open('/admin/veriflanjut/tolak')?>
+                                    <button class="btn btn-success btn-user btn-block" name="id_verifikasi" value="<?= $data['id_verifikasi']?>">Simpan</button>
+                                    <input type="text" disabled hidden name="id_member" value="<?= $data['id_member']?>">
+                                <?= form_close()?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
+  </section>
 <?= $this->endSection();?>

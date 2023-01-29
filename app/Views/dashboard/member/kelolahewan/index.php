@@ -74,7 +74,6 @@ use PhpParser\Node\Stmt\Echo_;
     </div>
 </div>
 
-</div>
 <!-- /.container-fluid -->
 
 </div>

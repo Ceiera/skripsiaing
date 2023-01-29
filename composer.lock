@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94766da092bd4d93eb882d812bcb43cd",
+    "content-hash": "c15262329697f876157c487bb3e8a7ea",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -27,7 +27,7 @@
                 "ext-mbstring": "*",
                 "kint-php/kint": "^4.1.1",
                 "laminas/laminas-escaper": "^2.9",
-                "php": "^7.4 || ^8.0",
+                "php": "^7.4 || ^8.0 || ^8.2",
                 "psr/log": "^1.1"
             },
             "require-dev": {
@@ -837,16 +837,16 @@
         },
         {
             "name": "xendit/xendit-php",
-            "version": "2.18.0",
+            "version": "2.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xendit/xendit-php.git",
-                "reference": "93edb797aead37a7e3a3f52e6b72d3628f090eee"
+                "reference": "02e9e413a072e68d238adb1750d9e125268b16e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/93edb797aead37a7e3a3f52e6b72d3628f090eee",
-                "reference": "93edb797aead37a7e3a3f52e6b72d3628f090eee",
+                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/02e9e413a072e68d238adb1750d9e125268b16e5",
+                "reference": "02e9e413a072e68d238adb1750d9e125268b16e5",
                 "shasum": ""
             },
             "require": {
@@ -876,9 +876,9 @@
             ],
             "support": {
                 "issues": "https://github.com/xendit/xendit-php/issues",
-                "source": "https://github.com/xendit/xendit-php/tree/v2.18.0"
+                "source": "https://github.com/xendit/xendit-php/tree/2.19.0"
             },
-            "time": "2022-08-03T04:20:12+00:00"
+            "time": "2022-10-12T03:31:31+00:00"
         }
     ],
     "packages-dev": [
@@ -1472,7 +1472,7 @@
             },
             "require": {
                 "doctrine/instantiator": "^1.2",
-                "php": "^7.2 || ~8.0, <8.2",
+                "php": "^7.2 || ^8.0 || ^8.2",
                 "phpdocumentor/reflection-docblock": "^5.2",
                 "sebastian/comparator": "^3.0 || ^4.0",
                 "sebastian/recursion-context": "^3.0 || ^4.0"
@@ -3078,5 +3078,5 @@
         "php": "^7.4 || ^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

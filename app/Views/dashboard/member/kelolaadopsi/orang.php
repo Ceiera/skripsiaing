@@ -55,7 +55,7 @@ use PhpParser\Node\Stmt\Echo_;
                                 <td><?php echo($key['id_member_calon']) ;?></td>
                                 <td><?php echo($key['status_adopsi']) ;?></td>
                                 <td align="center">
-                                    <?= form_open('dashboard/kelolaadopsi/orang/');?>
+                                    <?= form_open('dashboard/kelolaadopsi/orang/'.$key['id_adopsi']);?>
                                         <button name="id_adopsi" type="submit" class="btn btn-warning " value="<?php echo($key['id_adopsi']) ;?>">Detail</button>
                                     <?= form_close()?>
                                    
