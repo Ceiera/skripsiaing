@@ -9,13 +9,9 @@ class Login extends BaseController
 {
     public function index()
     {
-        //helper dari code igniter
-        //helper('form');
-
         return view('login/index');
     }
-    public function cekUser()
-    {
+    public function cekUser(){
         //ngambil post dari form yang mengarah ke cekUser
         $email= $this->request->getPost('email');
         $password= hash("md5", $this->request->getPost('password'));

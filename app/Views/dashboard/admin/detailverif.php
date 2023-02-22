@@ -64,7 +64,7 @@
                             <div class="p-2 row justify">
                                 <div class="col-2">Nama Akun Bank</div>
                                 <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['nama_akunbank']?></div>
+                                <div class="col-auto"><?= $data['nama_akunbank']?><a href="http://wa.me/<?= $data['no_hp']?>" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-money-check"></i></div>
                             </div>
                             <div class="p-2 row justify">
                                 <div class="col-2">Umur</div>
@@ -107,7 +107,7 @@
                             </div>
                         </div>                        
                     </div>
-                    <div div class="tab-pane fade" id="foto-tab-pane" role="tabpanel" aria-labelledby="foto-tab" tabindex="0">
+                    <div class="tab-pane fade" id="foto-tab-pane" role="tabpanel" aria-labelledby="foto-tab" tabindex="0">
                         <div class="row" data-toggle="modal" data-target="#zoomFoto" style="margin-top: 20px;">
                             <div class="col-6 col-lg-3">
                                 <div class="count-data text-center">
@@ -127,6 +127,7 @@
                             <div class="col-6 col-lg-3">
                                 <div class="count-data text-center">
                                 <img src="<?= base_url('/verifikasi').'/'.$data['foto_kandang']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="3">
+                                </div>
                             </div>
                         </div>
                     </div>

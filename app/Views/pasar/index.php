@@ -3,6 +3,13 @@
     <!-- Section-->
     
         <div class="container px-4 px-lg-5 mt-5">
+             <div class="row">
+                    <?php 
+                        if (session()->getFlashdata('alert')) {
+                            echo '<p class="alert alert-danger">'.session()->getFlashdata('alert').'</p>';
+                        }
+                    ?>
+            </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <?php 
                     foreach ($data as $key) {
@@ -16,10 +23,10 @@
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <?php if ($key['biaya_ganti']>0) {
-                                        echo '<h5 class="fw-bolder">Fancy Product</h5>'.'
+                                        echo '<h5 class="fw-bolder">'.$key['nama_hewan'].'</h5>'.'
                                         Rp. '.$key['biaya_ganti'];
                                     } else {
-                                        echo '<h5 class="fw-bolder">Fancy Product</h5>'.'Free Adopt';
+                                        echo '<h5 class="fw-bolder">'.$key['nama_hewan'].'</h5>'.'Free Adopt';
                                     };?>
                                 </div>
                             </div>

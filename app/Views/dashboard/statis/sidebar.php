@@ -47,7 +47,7 @@
     <div id="kelolaHewan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?= base_url('/dashboard/kelolahewan')?>">Cek Hewan</a>
-            <a class="collapse-item" href="<?= base_url('/dashboard/kelolaadopsi')?>">Pengajuan Adopsi</a>
+            <a class="collapse-item" href="<?= base_url('/dashboard/kelolaadopsi/pengajuan')?>">Pengajuan Adopsi</a>
             <a class="collapse-item" href="<?= base_url('/dashboard/kelolaadopsi/orang')?>">Permintaan Pengadopsi</a>
         </div>
     </div>

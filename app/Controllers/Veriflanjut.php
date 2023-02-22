@@ -9,15 +9,33 @@ class Veriflanjut extends BaseController
 {
     public function index()
     {
-        return view('dashboard/member/profile/verifikasilanjut');
+        $model=new ModelVerifMember();
+        $data=$model->where('id_member',session()->get('id_member'))->first();
+        if ($model->where('id_member',session()->get('id_member'))->countAllResults()==0) {
+            return view('dashboard/member/profile/verifikasilanjut');
+        }
+        if ($model->where('id_member',session()->get('id_member'))->where('status_verifikasi')->countAllResults()!=0) {
+            echo '<script>
+                    alert("Verifikasi Lanjut sudah dikirim, tunggu sampai admin menghubungi anda");
+                    window.location.href="'.base_url('/dashboard').'";
+                </script>';
+        }
+        echo '<script>
+            alert("Verifikasi Lanjut sudah dikirim, tunggu sampai admin menghubungi anda");
+            window.location.href="'.base_url('/dashboard').'";
+        </script>';
+       
     }
     public function kirim()
     {
         $id_verifikasi= random_string('alnum', 16);
         $id_member= session()->get('id_member');
+        $model=new ModelVerifMember();
+        
         $nama_lengkap= $this->request->getPost('nama_lengkap');
         $alamat_ktp= $this->request->getPost('alamat_ktp');
         $tanggal_lahir=parse_timestamp(strtotime($this->request->getPost('tanggal_lahir')), 'Y-m-d');
+
         $profesi= $this->request->getPost('profesi');
         $jumlahpenghuni= $this->request->getPost('jumlah_penghuni');
         $bersedia_vaksinasi= $this->request->getPost('bersedia_vaksinasi');
@@ -43,7 +61,6 @@ class Veriflanjut extends BaseController
         $foto_diri->move('verifikasi', $nmfoto_diri);
         $fotokandang->move('verifikasi', $nmfoto_kandang);
         
-        $model=new ModelVerifMember();
         $datas=[
                 'id_verifikasi'=>$id_verifikasi,
                 'id_member'=>$id_member,
@@ -67,7 +84,10 @@ class Veriflanjut extends BaseController
         $anu=false;
         $temp=db_connect();
         $temp->table('verifikasi')->insert($datas);
-        return redirect()->to('dashboard/kelolahewan');
+        echo '<script>
+                alert("Verifikasi Lanjut sudah dikirim, tunggu sampai admin menghubungi anda");
+                window.location.href="'.base_url('dashboard').'";
+            </script>';
 
     }
     public function list()
@@ -105,9 +125,9 @@ class Veriflanjut extends BaseController
             $member= new ModelKelolamember();
             $datale=['id_level'=>'2'];
             $member->update($id_member,$datale);
-            return redirect()->to('dashboard/admin/veriflanjut');
+            return redirect()->to('admin/veriflanjut');
         }else {
-            return redirect()->to('dashboard/admin/veriflanjut');
+            return redirect()->to('admin/veriflanjut');
         }
     }
     public function tolak()
@@ -125,5 +145,14 @@ class Veriflanjut extends BaseController
         }else {
             return redirect()->to('dashboard/admin/veriflanjut');
         }
+    }
+
+    public function cekrekening($id)
+    {
+        echo '<script>
+            window.location.href="https://cekrekening.id/home-card";
+            $("#norek").val("'.$id.'");
+            $("#norek").after("<div><h6>Mohon isi kode bank sesuai di detail</h6></div>");
+        </script>';
     }
 }

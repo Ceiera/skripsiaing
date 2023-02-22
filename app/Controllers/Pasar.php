@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelAdopsi;
 use App\Models\ModelHewan;
 use App\Models\ModelWA;
+use phpDocumentor\Reflection\Types\Null_;
 
 class Pasar extends BaseController
 {
@@ -41,19 +43,29 @@ class Pasar extends BaseController
         if ($id_member==$namapemilik) {
             echo 'gagal';   
         }
-        $temp=$db->table('adopsi')->insert([
-            'id_adopsi' => random_string('alnum', 12),
-            'id_hewan' => $id_hewan,
-            'id_member_pemilik' => $namapemilik,
-            'id_member_calon' =>$id_member
-        ]);
-        $kirim= new ModelWA();
-        $sql="select * from member where id_member='".$namapemilik."'";
-        $temp=$db->query($sql)->getResultArray();
-        foreach ($temp as $key) {
-            $kirim->kirimWA($key['no_hp'], 'HALO ada yang adopsi hewan kamu. Cek sekarang di: localhost:8080/dashboard/kelolaadopsi/'.$id_hewan);
+        //cek adopsi sudah ada atau belum, agar tidak ada duplikasi
+        $cekIdAdopsi= new ModelAdopsi();
+        $queryAdopsi= $cekIdAdopsi->where('id_member_calon', $id_member)->where('id_hewan', $id_hewan)->first();
+        if (empty($queryAdopsi['id_adopsi'])) {
+            $temp=$db->table('adopsi')->insert([
+                'id_adopsi' => random_string('alnum', 12),
+                'id_hewan' => $id_hewan,
+                'id_member_pemilik' => $namapemilik,
+                'id_member_calon' =>$id_member
+            ]);
+            $kirim= new ModelWA();
+            $sql="select * from member where id_member='".$namapemilik."'";
+            $temp=$db->query($sql)->getResultArray();
+            foreach ($temp as $key) {
+                $kirim->kirimWA($key['no_hp'], 'HALO ada yang adopsi hewan kamu. Cek sekarang di: localhost:8080/dashboard/kelolaadopsi/'.$id_hewan);
+            }
+            return redirect()->to('/dashboard');
+            echo ' # code...';
+        }else {
+            echo 'sudah ada';
+            return redirect()->to('/pasar')->with('alert', 'Hewan Tersebut sudah anda ajukan, mohon cek di dashboard dan tunggu ajuan diterima oleh pemilik hewan');
         }
-        return redirect()->to('/dashboard');
+        
     }
     public function terimaadopsi()
     {

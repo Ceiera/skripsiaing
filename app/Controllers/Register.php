@@ -76,22 +76,25 @@ class Register extends BaseController
             return redirect()->to('/login/register');
         }else {
             $db=db_connect();
-            function generateRandomString($length = 12) {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $charactersLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++) {
-                    $randomString .= $characters[rand(0, $charactersLength - 1)];
-                }
-                return $randomString;
+            $idmember= random_string('alnum',12);
+            if ($db->table('member')
+                    ->where('email',$email)
+                    ->countAllResults()!=0) {
+                        if ($db->table('member')
+                                ->where('no_hp','+62'.$no_hp)
+                                ->countAllResults()!=0) {
+                                    $sess=['errEmail'=>'Email sudah didaftarkan','errNo_hp'=>'No HP sudah didaftarkan'];
+                                    session()->setFlashdata($sess);
+                                    return redirect()->to('/login/register');
+                        }
+                        return redirect()->to('/login/register')->with('errEmail','Email sudah didaftarkan');
+            }elseif($db->table('member')
+                        ->where('no_hp','+62'.$no_hp)
+                        ->countAllResults()!=0) {
+                            return redirect()->to('/login/register')->with('errNo_hp','Nomor sudah didaftarkan');
             }
-            $idmember= generateRandomString();
-            function parse_timestamp($timestamp, $format = 'Y-m-d H:i:s')
-                {
-                    return date($format, $timestamp);
-                }
-            $tanggal= parse_timestamp(now('Asia/Jakarta'));
-            $db->table('member')->insert([
+            $tanggal= date('Y-m-d H:i:s', now('Asia/Jakarta'));
+            $querydb=$db->table('member')->insert([
                     'id_member'=> $idmember,
                     'username'    => $username,
                     'password'   => $temp,

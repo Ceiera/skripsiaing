@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'postgres',
         'password' => 'fairytail71',
-        'database' => 'skripsiv3',
+        'database' => 'skripsiv4',
         'DBDriver' => 'postgre',
         'DBPrefix' => '',
         'pConnect' => false,

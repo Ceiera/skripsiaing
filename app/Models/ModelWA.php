@@ -11,7 +11,7 @@ class ModelWA extends Model
     protected $allowedFields = ['id_member', 'username','password','email','is_active', 'id_level'];
     function kirimWA($nomortujuan, $pesan)
     {
-        $my_apikey = "1E3G6ISNOEEY442WLPQ9";
+        $my_apikey = "DKPY0X60ZD6I54SAVPER";
         $destination = $nomortujuan;
         $message = $pesan;
         $api_url = "http://panel.rapiwha.com/send_message.php";

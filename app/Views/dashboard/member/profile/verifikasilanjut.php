@@ -1,5 +1,9 @@
 <?= $this->extend('dashboard/statis/template');?>
 <?= $this->section('content');?>
+
+<?php if (session()->getFlashdata('belumverif')) {
+        echo '<script>alert("'.session()->getFlashdata('belumverif').'")</script>';
+        }?>
 <div class="container-fluid">
 
 <!-- Page Heading -->
@@ -137,4 +141,5 @@
     </div>
 </div>
 </div>
+
 <?= $this->endSection();?>

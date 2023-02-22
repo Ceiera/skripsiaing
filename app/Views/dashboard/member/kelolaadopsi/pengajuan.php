@@ -42,7 +42,7 @@
                                 <td><?php echo($key['nama_lengkap']) ;?></td>
                                 <td><?php echo($key['status_adopsi']) ;?></td>
                                 <td style="text-align: center;">
-                                    <a href="<?= base_url('dashboard/kelolaadopsi/orang/').'/'.$key['id_adopsi'];?>"><button name="id_adopsi" type="submit" class="btn btn-warning " value="<?php echo($key['id_adopsi']) ;?>">Detail</button></a>
+                                    <a href="<?= base_url('dashboard/kelolaadopsi/pengajuan/').'/'.$key['id_adopsi'];?>"><button name="id_adopsi" type="submit" class="btn btn-warning " value="<?php echo($key['id_adopsi']) ;?>">Detail</button></a>
                                 </td>
                             </tr>
                         <?php } ;?>

@@ -62,7 +62,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url();?>/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
     <script src="<?php echo base_url();?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <!-- Core plugin JavaScript-->

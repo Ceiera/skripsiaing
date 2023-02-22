@@ -40,13 +40,27 @@ $routes->get('/', 'Home::index');
 $routes->get('/pengunjung', 'Pengunjung::index');
 $routes->get('/pengunjung/test', 'Pengunjung::test');
 //Login
-$routes->get('/login', 'Login::index');
+$routes->group('',['filter'=>'logins'], static function($routes){
+    $routes->get('/login', 'Login::index');
+    $routes->post('/login/cekUser', 'Login::cekUser');
+    $routes->get('/login/register', 'Register::index');
+    $routes->post('/login/register/cekRegis', 'Register::cekRegis');
+    $routes->get('/login/forgot', 'Forgot::index');
+    $routes->post('/login/forgot/cekEmail', 'Forgot::cekEmail');
+});
 $routes->get('/login/keluar', 'Login::keluar');
-$routes->post('/login/cekUser', 'Login::cekUser');
-$routes->get('/login/register', 'Register::index');
-$routes->post('/login/register/cekRegis', 'Register::cekRegis');
-$routes->get('/login/forgot', 'Forgot::index');
-$routes->post('/login/forgot/cekEmail', 'Forgot::cekEmail');
+$routes->group('',['filter'=>'member'], static function($routes){
+    //dashbboardMember
+    $routes->get('/dashboard/profile', 'Kelolaprofile::index');
+    $routes->get('/dashboard/veriflanjut', 'Veriflanjut::index');
+    $routes->post('/dashboard/veriflanjut/kirim', 'Veriflanjut::kirim');
+});
+
+    
+//tempalte
+// $routes->group('',['filter'=>'login'], static function($routes){
+    
+// });
 
 //dashboardAdmin
 $routes->get('/login/coba', 'Coba::index');
@@ -56,33 +70,57 @@ $routes->get('/dashboard/kelolamember', 'Kelolamember::index');
 $routes->post('/dashboard/kelolamember/hapus', 'Kelolamember::hapus');
 $routes->get('/admin/veriflanjut', 'Veriflanjut::list');
 $routes->get('/admin/veriflanjut/(:segment)', 'Veriflanjut::detail/$1');
+$routes->get('/admin/veriflanjut/cekrekening', 'Veriflanjut::cekrekening');
 $routes->post('/admin/veriflanjut/terima', 'Veriflanjut::terima');
 $routes->post('/admin/veriflanjut/tolak', 'Veriflanjut::tolak');
 
-//dashbboardMember
-$routes->get('/dashboard/kelolahewan', 'Kelolahewan::index');
-$routes->post('/dashboard/kelolahewan/hapus', 'Kelolahewan::hapus');
-$routes->get('/dashboard/kelolahewan/tambah', 'Kelolahewan::tambah');
-$routes->get('/dashboard/kelolahewan/edit', 'Kelolahewan::edit');
-$routes->post('/dashboard/kelolahewan/edit', 'Kelolahewan::edit');
-$routes->post('/dashboard/kelolahewan/upload', 'Kelolahewan::upload');
-$routes->get('/dashboard/profile', 'Kelolaprofile::index');
-$routes->get('/dashboard/veriflanjut', 'Veriflanjut::index');
-$routes->post('/dashboard/veriflanjut/kirim', 'Veriflanjut::kirim');
+//filterverified dulu
+$routes->group('',['filter'=>'verified'], static function($routes){
+    $routes->get('/dashboard/kelolahewan', 'Kelolahewan::index');
+    $routes->post('/dashboard/kelolahewan/hapus', 'Kelolahewan::hapus');
+    $routes->get('/dashboard/kelolahewan/tambah', 'Kelolahewan::tambah');
+    $routes->get('/dashboard/kelolahewan/edit', 'Kelolahewan::edit');
+    $routes->post('/dashboard/kelolahewan/edit', 'Kelolahewan::edit');
+    $routes->post('/dashboard/kelolahewan/upload', 'Kelolahewan::upload');
+    
+    //adopsi
+    $routes->get('/dashboard/kelolaadopsi', 'Kelolaadopsi::index');
+    $routes->get('/dashboard/kelolaadopsi/detail', 'Kelolaadopsi::detail');
+    $routes->get('/dashboard/kelolaadopsi/orang', 'Kelolaadopsi::orang');
+    $routes->get('/dashboard/kelolaadopsi/orang/(:segment)', 'Kelolaadopsi::detailorang/$1');
+    $routes->post('/dashboard/kelolaadopsi/orang/terima', 'Kelolaadopsi::terimaCalon');
+    $routes->post('/dashboard/kelolaadopsi/orang/tolak', 'Kelolaadopsi::tolakCalon');
+    $routes->get('/dashboard/kelolaadopsi/pengajuan', 'Kelolaadopsi::pengajuan');
+    $routes->get('/dashboard/kelolaadopsi/pengajuan/(:segment)', 'Kelolaadopsi::detailpengajuan/$1');
+    $routes->post('/dashboard/kelolaadopsi/pengajuan/terima', 'Kelolaadopsi::terimapengajuan');
+    $routes->post('/dashboard/kelolaadopsi/pengajuan', 'Kelolaadopsi::pengajuan');
+    $routes->post('/pasar/ajukanadopsi', 'Pasar::ajukanadopsi');
+    
+    //transaksi
+    $routes->get('/dashboard/kelolatransaksi/buattransaksi', 'Kelolatransaksi::buattransaksi');
+    $routes->post('/dashboard/kelolatransaksi/buatVA', 'Kelolatransaksi::buatVA');
+    $routes->post('/dashboard/kelolatransaksi/cekPembayaran', 'Kelolatransaksi::cekPembayaran');
+//group test
+});
+
+
 //pasar
 $routes->get('/pasar', 'Pasar::index');
 $routes->get('/pasar/(:segment)', 'Pasar::detail/$1');
-$routes->post('/pasar/detail', 'Pasar::cek');
-$routes->post('/pasar/ajukanadopsi', 'Pasar::ajukanadopsi');
-//adopsi
-$routes->get('/dashboard/kelolaadopsi', 'Kelolaadopsi::index');
-$routes->get('/dashboard/kelolaadopsi/detail', 'Kelolaadopsi::detail');
-$routes->get('/dashboard/kelolaadopsi/orang', 'Kelolaadopsi::orang');
-$routes->post('/dashboard/kelolaadopsi/orang/(:segment)', 'Kelolaadopsi::detailorang/$1');
+
+
+
+
+$routes->group('',['filter'=>'verified'], static function($routes){
+    $routes->get('/testingpage', 'Kelolatransaksi::databayar');
+    $routes->get('/simulasibayar', 'Simulasibayar::simulasiBayar');//ignore, gagal
+    
+});
+$routes->get('/simulasibayar/kirim', 'Simulasibayar::simulasiBayarKirim'); //gagal
 
 
 //testing
-$routes->get('/testingpage', 'Transaksi::buatPembayaran');
+
 
 
 

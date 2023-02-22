@@ -6,7 +6,7 @@
                 <div class="row align-items-center flex-row">
                     <div class="col-8">
                         <div class="about-text go-to">
-                            <h3 class="dark-color">Calon Adopter: <?= $data['nama_lengkap']?></h3>
+                            <h3 class="dark-color">Pemilik: <?= $data['nama_lengkap']?></h3>
                             <h6 class="theme-color lead">Profesi: <?= $data['profesi']?></h6>
                             <p><?= $data['alamat_ktp']?></p>
                             <p>Alasan Adopsi: <?= $data['alasan_adopsi_lagi']?></p>
@@ -22,7 +22,13 @@
                         <br>
                         <div class="row align-items-center"  style="text-align: center;">
                             <div class="col">
-                                <button class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#terima">Terima</button>
+                                <button class="btn btn-success btn-user btn-block" data-toggle="modal" data-target="#terima"><?php 
+                                    if ($data['status_adopsi']=='Menunggu Diterima') {
+                                        echo 'Notify';
+                                    }else {
+                                        echo 'Lanjut Proses Pembayaran';
+                                    }
+                                ?></button>
                             </div>
                             <div class="col">
                                 <button class="btn btn-danger btn-user btn-block"  data-toggle="modal" data-target="#tolak">Tolak</button>
@@ -68,62 +74,8 @@
                                     echo $age;?>
                                 </div>
                             </div>
-                            <div class="p-2 row justify">
-                                <div class="col-2">Status Tempat Tinggal</div>
-                                <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['status_tempat_tinggal']?></div>
-                            </div>
-                            <div class="p-2 row justify">
-                                <div class="col-2">Jumlah Penghuni Rumah</div>
-                                <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['jum_penghuni_rumah']?></div>
-                            </div>
-                            <div class="p-2 row justify">
-                                <div class="col-2">Persetujuan Penghuni Rumah</div>
-                                <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['persetujuan_penghuni_rumah']?></div>
-                            </div>
-                            <div class="p-2 row justify">
-                                <div class="col-2">Bersedia Vaksinasi</div>
-                                <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['bersedia_vaksinasi_rutin']?></div>
-                            </div>
-                            <div class="p-2 row justify">
-                                <div class="col-2">Bersedia Steril</div>
-                                <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['bersedia_steril']?></div>
-                            </div>
-                            <div class="p-2 row justify">
-                                <div class="col-2">Pernah Adopsi</div>
-                                <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['pernah_adopsi']?></div>
-                            </div>
                         </div>                        
                     </div>
-                    <div class="tab-pane fade" id="foto-tab-pane" role="tabpanel" aria-labelledby="foto-tab" tabindex="0">
-                        <div class="row" data-toggle="modal" data-target="#zoomFoto" style="margin-top: 20px;">
-                            <div class="col-6 col-lg-3">
-                                <div class="count-data text-center">
-                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_dirirumah']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="0">
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="count-data text-center">
-                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_rumah']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="1">
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="count-data text-center">
-                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_rumah2']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="2">
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="count-data text-center">
-                                <img src="<?= base_url('/verifikasi').'/'.$data['foto_kandang']?>" title="" alt="" width="200px" height="200px" data-target="#carouselExample" data-slide-to="3">
-                                </div>
-                            </div>
-                        </div>
-                      </div>
                     <div class="tab-pane fade" id="hewan-tab-pane" role="tabpanel" aria-labelledby="hewan-tab" tabindex="0">
                         <div class="grid gap-0 row-gap-3">
                             <div class="p-2 row justify">
@@ -206,63 +158,23 @@
                     </div>
                 </div>          
             </div>
-            <div class="modal fade" id="zoomFoto" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExample" data-slide-to="1"></li>
-                                <li data-target="#carouselExample" data-slide-to="2"></li>
-                                <li data-target="#carouselExample" data-slide-to="3"></li>
-                            </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_dirirumah']?>" alt="foto diri">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_rumah']?>" alt="foto rumah">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_rumah2']?>" alt="foto rumah">
-                            </div>
-                            <div class="carousel-item">
-                            <img class="d-block w-100" src="<?= base_url('/verifikasi').'/'.$data['foto_kandang']?>" alt="foto kandang">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
             <div class="modal fade" tabindex="-1" role="dialog" id="terima">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Terima Submit Verifikasi?</h5>
+                            <h5 class="modal-title">Lanjut Langkahmu?</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Nama Calon Pengadopsi: <?= $data['nama_lengkap']?> dengan Nama Hewan yang ingin diadopsi: <?=  $data['nama_hewan']?> akan diterima dan dilanjutkan ke proses pembayaran (jika ada)?</p>
+                            <?php 
+                            if ($data['status_adopsi']=='Menunggu Diterima') {
+                                echo "<p>Nama Calon Pengadopsi: ".$data['nama_lengkap']."dengan Nama Hewan yang ingin diadopsi:". $data['nama_hewan']."akan diingatkan kembali?</p>";
+                            }else {
+                                echo "<p>Nama Calon Pengadopsi: ".$data['nama_lengkap']."dengan Nama Hewan yang ingin diadopsi:". $data['nama_hewan']."akan dilanjutkan ke proses pembayaran (jika ada)?</p>";
+                            }
+                            ?>
                         </div>
                         <div class="modal-footer" >
                             <div class="col">
@@ -271,9 +183,9 @@
                             </button>
                             </div>
                             <div class="col">
-                                <?= form_open('/dashboard/kelolaadopsi/orang/terima')?>
+                                <?= form_open('/dashboard/kelolaadopsi/pengajuan/terima')?>
                                     <button class="btn btn-success btn-user btn-block" name="id_adopsi" value="<?= $data['id_adopsi']?>">Simpan</button>
-                                    <input type="text" hidden name="id_member_calon" value="<?= $data['id_member_calon']?>">
+                                    <input type="text" hidden name="id_member_pemilik" value="<?= $data['id_member_pemilik']?>">
                                     <input type="text" hidden name="id_hewan" value="<?= $data['id_hewan']?>">
                                 <?= form_close()?>
                             </div>
@@ -286,13 +198,13 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Tolak Submit Verifikasi?</h5>
+                            <h5 class="modal-title">Batalkan?</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Nama Calon Pengadopsi: <?= $data['nama_lengkap']?> dengan Nama Hewan yang ingin diadopsi: <?=  $data['nama_hewan']?> akan ditolak?</p>
+                            <p>Nama Calon Pengadopsi: <?= $data['nama_lengkap']?> dengan Nama Hewan yang ingin diadopsi: <?=  $data['nama_hewan']?> akan dibatalkan?</p>
                         </div>
                         <div class="modal-footer" >
                             <div class="col">
@@ -301,10 +213,10 @@
                             </button>
                             </div>
                             <div class="col">
-                                <?= form_open('/dashboard/kelolaadopsi/orang/tolak')?>
+                                <?= form_open('/dashboard/kelolaadopsi/pengajuan/tolak')?>
                                 <?= csrf_field();?>
                                     <div class="form-group">
-                                        <input type="text" hidden name="id_member_calon" value="<?= $data['id_member_calon']?>">
+                                        <input type="text" hidden name="id_member_pemilik" value="<?= $data['id_member_pemilik']?>">
                                         <input type="text" hidden name="id_hewan" value="<?= $data['id_hewan']?>">
                                         <button class="btn btn-success btn-user btn-block" type="submit" name="id_adopsi" value="<?= $data['id_adopsi']?>">Simpan</button>
                                     </div>

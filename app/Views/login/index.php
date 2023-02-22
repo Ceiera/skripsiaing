@@ -1,5 +1,9 @@
 <?= $this->extend('/login/statis')?>
 <?= $this->section('content')?>
+<?php if (session()->getFlashdata('belummasuk')) {
+    echo '<script>alert("'.session()->getFlashdata('belummasuk').'")</script>';
+}?>
+<div class="container-fluid">
 <body class="bg-gradient-primary">
 
     <div class="container">

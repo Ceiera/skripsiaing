@@ -10,7 +10,7 @@ class ModelVerifMember extends Model
     protected $primaryKey = 'id_verifikasi';
 
     //jaga id_verifikasi','id_admin','id_member','nama_lengkap','alamat_ktp','tanggal_lahir','profesi','jum_penghuni_rumah','bersedia_vaksinasi_rutin','bersedia_steril','status_tempat_tinggal','persetujuan_penghuni_rumah','pernah_adopsi','alasan_adopsi_lagi','foto_rumah','foto_rumah2','foto_dirirumah','foto_kandang','created_at','updated_at','status_verifikasi','email','no_hp','bank_code','nama_akunbank','foto','last_login','is_active','id_level
-    protected $allowedFields = ['*'];
+    protected $allowedFields = ['nama_lengkap','alamat_ktp','tanggal_lahir','profesi','jum_penghuni_rumah','bersedia_vaksinasi_rutin','bersedia_steril','status_tempat_tinggal','persetujuan_penghuni_rumah','pernah_adopsi','alasan_adopsi_lagi','foto_rumah','foto_rumah2','foto_dirirumah','foto_kandang','created_at','updated_at','status_verifikasi'];
 
     //entity untuk joinan
     public function indexjoinMember()

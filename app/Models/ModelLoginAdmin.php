@@ -8,5 +8,5 @@ class ModelLoginAdmin extends Model
 {
     protected $table      = 'admin';
     protected $primaryKey = 'email';
-    protected $allowedFields = ['id_admin', 'nama_admin','password','email','is_active','id_level'];
+    protected $allowedFields = ['nama_admin','password','email','is_active','id_level'];
 }
