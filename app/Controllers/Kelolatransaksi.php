@@ -18,6 +18,15 @@ class Kelolatransaksi extends BaseController
 
     public function buatTransaksi()
     {
+
+        //cek transaksi dlu
+        $cekIdTransaksi= new ModelTransaksi();
+        if ($cekIdTransaksi->whereNotIn('status_transaksi',['Dibatalkan oleh Pembeli'])->where('id_adopsi',session()->get('id_adopsiTransaksi'))->countAllResults()!=0) {
+            echo '<script>
+                    alert("Anda sudah membuat pembayaran, silahkan selesaikan terlebih dahulu");
+                    window.location.href="'.base_url('dashboard').'";
+                </script>';//nanti diganti ke halaman detail transaksi
+        }
         //Query Adopsi
         $cekIdAdopsi= new ModelAdopsi();
         $queryAdopsi= $cekIdAdopsi->where('id_adopsi', session()->get('id_adopsiTransaksi'))->first();
@@ -45,10 +54,13 @@ class Kelolatransaksi extends BaseController
             $idAdopsi= session()->get('id_adopsiTransaksi');
             $idMemberBayar= session()->get('id_pembayarTransaksi');
             $kode_bank= $this->request->getPost('kode_bank');
+
             //ambil data biaya kesepakatan
             $cekIdAdopsi= new ModelAdopsi();
             $queryAdopsi= $cekIdAdopsi->where('id_adopsi', $idAdopsi)->first();
             $biaya= $queryAdopsi['harga_diterima'];
+
+
             //ambil data verifikasi pembayar
             $cekIdVerif= new ModelVerifMember();
             $queryVerif= $cekIdVerif->where('id_member', $idMemberBayar)->first();
@@ -73,7 +85,7 @@ class Kelolatransaksi extends BaseController
             $kirimXendit= \Xendit\VirtualAccounts::create($dataXendit);
         
             //queryTransaksi
-            $cekIdTransaksi= new ModelTransaksi();
+            
             $data=[
                 'id_transaksi'=>$kirimXendit['id'],
                 'id_adopsi'=>$idAdopsi,
@@ -94,12 +106,18 @@ class Kelolatransaksi extends BaseController
     public function cekPembayaran(){
         $id=$this->request->getPost('id');
         $queryXendit= \Xendit\VirtualAccounts::retrieve($id);
-        session()->set('status_pembayaran','INACTIVE');
+        session()->set('status_pembayaran',$queryXendit['status']);
         if (session()->get('status_pembayaran')=='INACTIVE') {
             //update sql
+            //ambil id adopsi dari transaksi
+            $cekIdTransaksi= new ModelTransaksi();
+            $queryTransaksi= $cekIdTransaksi->where('id_transaksi',$id)->first();
+
             //mulai dari adopsi
             $cekIdAdopsi= new ModelAdopsi();
-            $queryAdopsi= $cekIdAdopsi->update('status_adopsi','Proses Jual Beli');
+            $queryAdopsi= $cekIdAdopsi->update($queryTransaksi['id_adopsi'],['status_adopsi'=>'Proses Jual Beli']);
+            $queryTransaksi= $cekIdTransaksi->update($id,['status_transaksi'=>'Berhasil Dibayar']);
+            // $queryTransaksi= $cekIdTransaksi->update('')
             echo json_encode($queryXendit);
         }else {
             echo json_encode($queryXendit);
@@ -143,6 +161,21 @@ class Kelolatransaksi extends BaseController
         ];
         $buatPemabyaran= \Xendit\VirtualAccounts::create($dataXendit);
         dd($buatPemabyaran);
+    }
+    public function daftarTransaksi()
+    {
+        $transaksi= db_connect();
+        $berhasil= $transaksi->query("select * from transaksi join adopsi on transaksi.id_adopsi=adopsi.id_adopsi join hewan on adopsi.id_hewan=hewan.id_hewan where transaksi.id_adopsi in (select adopsi.id_adopsi from adopsi where adopsi.id_member_calon='".session()->get('id_member')."') and status_transaksi='Selesai'")->getResultArray(); //Tampil data transaksi yang sudah pernah dibayar
+        $gagal= $transaksi->query("select * from transaksi join adopsi on transaksi.id_adopsi=adopsi.id_adopsi join hewan on adopsi.id_hewan=hewan.id_hewan where transaksi.id_adopsi in (select adopsi.id_adopsi from adopsi where adopsi.id_member_calon='".session()->get('id_member')."') and status_transaksi in ('Dibatalkan oleh Pembeli','Dibatalkan oleh Penjual')")->getResultArray();
+        $menungguDibayar= $transaksi->query("select * from transaksi join adopsi on transaksi.id_adopsi=adopsi.id_adopsi join hewan on adopsi.id_hewan=hewan.id_hewan where transaksi.id_adopsi in (select adopsi.id_adopsi from adopsi where adopsi.id_member_calon='".session()->get('id_member')."') and status_transaksi in ('Menunggu')")->getResultArray();
+        $sedangBerjalan= $transaksi->query("select * from transaksi join adopsi on transaksi.id_adopsi=adopsi.id_adopsi join hewan on adopsi.id_hewan=hewan.id_hewan where transaksi.id_adopsi in (select adopsi.id_adopsi from adopsi where adopsi.id_member_calon='".session()->get('id_member')."') and status_transaksi in ('Berhasil Dibayar','Diterima oleh Penjual','Proses Pengiriman','Sampai')")->getResultArray();
+        $data=[
+            'berhasil'=>$berhasil,
+            'gagal'=>$gagal,
+            'menungguDibayar'=>$menungguDibayar,
+            'sedangBerjalan'=>$sedangBerjalan
+        ];
+        return view ('/dashboard/member/kelolatransaksi/daftartransaksi',$data);
     }
     
     

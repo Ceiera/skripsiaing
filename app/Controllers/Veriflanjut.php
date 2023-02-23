@@ -146,13 +146,4 @@ class Veriflanjut extends BaseController
             return redirect()->to('dashboard/admin/veriflanjut');
         }
     }
-
-    public function cekrekening($id)
-    {
-        echo '<script>
-            window.location.href="https://cekrekening.id/home-card";
-            $("#norek").val("'.$id.'");
-            $("#norek").after("<div><h6>Mohon isi kode bank sesuai di detail</h6></div>");
-        </script>';
-    }
 }

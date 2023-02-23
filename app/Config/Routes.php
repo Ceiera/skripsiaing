@@ -70,7 +70,6 @@ $routes->get('/dashboard/kelolamember', 'Kelolamember::index');
 $routes->post('/dashboard/kelolamember/hapus', 'Kelolamember::hapus');
 $routes->get('/admin/veriflanjut', 'Veriflanjut::list');
 $routes->get('/admin/veriflanjut/(:segment)', 'Veriflanjut::detail/$1');
-$routes->get('/admin/veriflanjut/cekrekening', 'Veriflanjut::cekrekening');
 $routes->post('/admin/veriflanjut/terima', 'Veriflanjut::terima');
 $routes->post('/admin/veriflanjut/tolak', 'Veriflanjut::tolak');
 
@@ -97,6 +96,7 @@ $routes->group('',['filter'=>'verified'], static function($routes){
     $routes->post('/pasar/ajukanadopsi', 'Pasar::ajukanadopsi');
     
     //transaksi
+    $routes->get('/dashboard/kelolatransaksi/daftartransaksi', 'Kelolatransaksi::daftarTransaksi');
     $routes->get('/dashboard/kelolatransaksi/buattransaksi', 'Kelolatransaksi::buattransaksi');
     $routes->post('/dashboard/kelolatransaksi/buatVA', 'Kelolatransaksi::buatVA');
     $routes->post('/dashboard/kelolatransaksi/cekPembayaran', 'Kelolatransaksi::cekPembayaran');

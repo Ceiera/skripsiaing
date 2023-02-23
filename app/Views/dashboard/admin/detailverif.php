@@ -57,14 +57,19 @@
                                 <div class="col-auto"><?= $data['email']?></div>
                             </div>
                             <div class="p-2 row justify">
-                                <div class="col-2">Nomer Bank</div>
+                                <div class="col-2">Kode Bank</div>
                                 <div class="col-auto">:</div>
                                 <div class="col-auto"><?= $data['bank_code']?></div>
                             </div>
                             <div class="p-2 row justify">
+                                <div class="col-2">Nomer Bank</div>
+                                <div class="col-auto">:</div>
+                                <div class="col-auto"><?= $data['nomer_rekening']?></div>
+                            </div>
+                            <div class="p-2 row justify">
                                 <div class="col-2">Nama Akun Bank</div>
                                 <div class="col-auto">:</div>
-                                <div class="col-auto"><?= $data['nama_akunbank']?><a href="http://wa.me/<?= $data['no_hp']?>" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-money-check"></i></div>
+                                <div class="col-auto"><?= $data['nama_akunbank']?></div>
                             </div>
                             <div class="p-2 row justify">
                                 <div class="col-2">Umur</div>

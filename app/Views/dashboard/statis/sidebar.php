@@ -62,7 +62,7 @@
     </a>
     <div id="transaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="buttons.html">Daftar Transaksi</a>
+            <a class="collapse-item" href="<?= base_url('/dashboard/kelolatransaksi/daftartransaksi')?>">Daftar Transaksi</a>
             <a class="collapse-item" href="cards.html">Pencairan Dana</a>
         </div>
     </div>
